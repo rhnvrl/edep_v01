@@ -1,0 +1,16 @@
+[2025-09-18 05:34:14] Webhook tetiklendi.
+[2025-09-18 05:34:14] Gelen Mesaj -> Chat ID: 7584309829, Metin: '/odevler'
+[2025-09-18 05:34:14] Kullanıcı bulundu -> ID: 17, Adı: Veli 1
+[2025-09-18 05:34:14] /ODEVLER komutu algılandı.
+[2025-09-18 05:34:14] Veliye bağlı öğrenci ID'leri: 20
+[2025-09-18 05:34:14] Çalıştırılacak SQL: 
+        SELECT o.id, o.baslik, o.odev_kodu, k.ad_soyad as ogrenci_adi, o.teslim_tarihi
+        FROM odevler o
+        JOIN ogrenci_sinif_iliskisi osi ON o.sinif_id = osi.sinif_id
+        JOIN kullanicilar k ON osi.ogrenci_id = k.id
+        WHERE osi.ogrenci_id IN (20) 
+        AND NOT EXISTS (SELECT 1 FROM odev_teslimleri ot WHERE ot.odev_id = o.id AND ot.ogrenci_id = osi.ogrenci_id)
+        ORDER BY k.ad_soyad, o.teslim_tarihi ASC
+[2025-09-18 05:34:14] Bulunan bekleyen ödev sayısı: 1
+[2025-09-18 05:34:14] Gönderilecek mesaj hazırlanıyor...
+[2025-09-18 05:34:15] Mesaj gönderildi.
